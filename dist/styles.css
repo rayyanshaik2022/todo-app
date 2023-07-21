@@ -1,0 +1,233 @@
+:root {
+    --side-nav-color: #f5f5f5;
+    --side-nav-selected: #ececec;
+
+    --primary-highlight: rgb(239, 233, 227);
+    --btn-active: #faf9f9;
+
+    --text-non-select: #808080;
+
+    --highlight-purple: #d6d5ff;
+    --highlight-green: #c8ee9a;
+
+    --project-purple: #adaceb;
+    --project-green: #c3e59a;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Roboto", sans-serif;
+}
+
+.content {
+    background-color: white;
+}
+
+.side-nav {
+    background-color: var(--side-nav-color);
+
+    height: 100%;
+    width: 240px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
+
+.logo-container {
+    display: flex;
+    height: 54px;
+
+    gap: 10px;
+}
+
+
+.logo-container > .text-pair {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+}
+
+.logo-container > .text-pair > h2 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.logo-container > .text-pair > h3 {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+
+/* New Task Button */
+.new-task-container {
+    width: calc(100% - 12px);
+    height: 34px;
+
+    background-color: white;
+    border-radius: 6px;
+    border: 1px solid white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    padding-left: 12px;
+}
+
+.text-lg {
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.new-task-container:hover {
+    cursor: pointer;
+    border: 1px solid var(--primary-highlight);
+}
+
+.new-task-container:active {
+    background-color: var(--btn-active);
+}
+
+.new-task-container:hover > .rotate {
+    animation: rotate180 0.35s ease;
+}
+@keyframes rotate180 {
+    0% {
+
+    }
+    100% {
+        rotate: 180deg;
+    }
+}
+
+/* Group Buttons */
+
+.group-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.group-btn {
+    width: calc(100% - 9px);
+    height: 34px;
+    border-radius: 6px;
+
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(255, 255, 255, 0);
+
+    display: flex;
+    gap: 8px;
+    padding-left: 9px;
+    align-items: center;
+
+    font-weight: 400;
+    color: var(--text-non-select);
+}
+
+.group-btn:hover {
+    cursor: pointer;
+    user-select: none;
+}
+
+.group-btn > img {
+    filter: invert(55%) sepia(0%) saturate(1098%) hue-rotate(182deg) brightness(92%) contrast(92%);
+}
+
+.group-btn.selected > img {
+    filter: none;
+}
+
+.group-btn.selected {
+    background-color: var(--side-nav-selected);
+    border: 1px solid var(--side-nav-selected);
+
+    color: black;
+    font-weight: 500;
+}
+
+.group-btn.selected {
+    animation: grow-in 0.35 ease-in-out;
+}
+
+.group-icon {
+    width: 24px;
+}
+
+
+/* Project Buttons*/
+
+.project-container {
+    width: 100%;
+
+    margin-top: 18px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.project-container > h1 {
+    font-size: 16px;
+    font-weight: 500;
+
+    margin-left: 11px;
+}
+
+.project {
+    width: 100%;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    
+    font-size: 16px;
+    margin-left: 16px;
+
+    display: flex;
+    gap: 12px;
+
+    user-select: none;
+}
+
+.project:hover {
+    cursor: pointer;
+}
+
+
+.proj-color {
+    height: 10px;
+    width: 10px;
+
+    background-color: black;
+    border-radius: 3px;
+}
+
+
+.proj-color.purple  {
+    background-color: var(--project-purple);
+}
+
+.proj-color.green {
+    background-color: var(--project-green);
+    
+}
+
+.proj-title {
+    color: var(--text-non-select);
+}
