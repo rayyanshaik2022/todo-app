@@ -20,6 +20,9 @@
     font-family: "Roboto", sans-serif;
 }
 
+body {
+    display: flex;
+}
 .content {
     background-color: white;
 }
@@ -27,9 +30,10 @@
 .side-nav {
     background-color: var(--side-nav-color);
 
-    height: 100%;
+    height: calc(100vh - 48px);
     width: 240px;
-    position: fixed;
+    
+    position: sticky;
     z-index: 1;
     top: 0;
     left: 0;
@@ -230,4 +234,10 @@
 
 .proj-title {
     color: var(--text-non-select);
+}
+
+/* Main content */
+
+.content {
+
 }
