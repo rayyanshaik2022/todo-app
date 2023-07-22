@@ -25,11 +25,27 @@ class Workspace {
     }
 }
 
+class Project extends Workspace {
+    constructor(name, color) {
+        super(name);
+        this._color = color;
+    }
+
+    get color() {
+        return this._color;
+    }
+
+    set color(newColor) {
+        this._color = newColor;
+    }
+}
+
 function createWorkspace(workspace) {
-    const content = document.querySelector(".content");
+    const content = document.createElement("div");
+    content.classList.add("content");
 
     content.innerHTML = `
-        <h1 class="todo-title">Today's Todos</h1>
+        <h1 class="todo-title">${workspace.title} Todos</h1>
         <h2 class="todo-desc">
             You've got <span class="todo-count">${workspace.todos.length}</span> todos to
             complete
@@ -54,9 +70,8 @@ function createWorkspace(workspace) {
             </div>
         `
 
-        let labelContainer = document.querySelectorAll(".label-container");
+        let labelContainer = content.querySelectorAll(".label-container");
         let currentLabelContainer = labelContainer[labelContainer.length - 1];
-        console.log(currentLabelContainer)
 
         // Add tags
         tod.tags.forEach(tag => {
@@ -66,7 +81,6 @@ function createWorkspace(workspace) {
             newTag.textContent = tag.text;
 
             currentLabelContainer.append(newTag);
-            console.log("e")
         });
 
     });

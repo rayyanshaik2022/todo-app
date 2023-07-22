@@ -2,6 +2,9 @@ import Todo from "./todo";
 import Label from "./label";
 import { Workspace, createWorkspace } from "./workspace";
 
+// Store workspaces
+let workspaces = [todayWorkspace, weekWorkspace];
+
 // Default workspaces
 const todayWorkspace = new Workspace("Today");
 const weekWorkspace = new Workspace("Week");
@@ -32,16 +35,43 @@ todo = new Todo(
 todo.tags = tags;
 todayWorkspace.addTodo(todo);
 
-let workspaces = [todayWorkspace, weekWorkspace];
-let todos = [];
+let mainContent = document.querySelector(".content");
 
-const mainContent = document.querySelector(".content");
+function setContent(content) {
+    let newContent = content;
+    mainContent.replaceWith(newContent)
+    mainContent = newContent;
+}
 
-mainContent.innerHTML += createWorkspace(todayWorkspace).innerHTML;
+setContent(createWorkspace(todayWorkspace));
+
 
 
 /*
 Button Clicking
 */
 
-// Sidebar buttons
+// Sidebar button actions
+const groupBtns = document.querySelectorAll(".btn-group");
+groupBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        if (!btn.classList.contains("selected")) {
+            btn.classList.add("selected");
+
+            // Individual button logic
+            if (btn.id == "group-today") {
+                setContent(createWorkspace(todayWorkspace));
+            }else if (btn.id == "group-week") {
+                setContent(createWorkspace(weekWorkspace));
+            }
+
+            // Remove from other button
+            groupBtns.forEach((btn2) => {
+                if (!(btn === btn2)) {
+                    btn2.classList.remove("selected");
+                }
+            })
+         
+        }
+    })
+})
