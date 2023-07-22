@@ -6,6 +6,7 @@ class Workspace {
         this._name = name;
         this._title = name + "'s";
         this._todos = [];
+        this._type = "workspace";
     }
 
     get todos() {
@@ -27,6 +28,10 @@ class Workspace {
     get name() {
         return this._name;
     }
+
+    get type() {
+        return this._type;
+    }
 }
 
 function createWorkspace(workspace) {
@@ -41,7 +46,7 @@ function createWorkspace(workspace) {
         </h2>
         <div class="add-new-task">
             <input class="regular-checkbox" type="checkbox" name="add-task" value="del">
-            <input class="add-text-field" type="text" name="add-task-text" placeholder="Add a new task">
+            <input class="add-text-field" type="text" name="add-task-text" placeholder="Add a new task" minlength="3">
         </div>
     `;
 
@@ -73,6 +78,20 @@ function createWorkspace(workspace) {
         });
 
     });
+
+    // Project specific
+    if (workspace.type == "project") {
+        const headerTitle = content.querySelector("h1");
+        headerTitle.style = `
+            background-color: var(--highlight-${workspace.color});
+            border: 6px solid var(--highlight-${workspace.color});
+            border-radius: 8px;
+        `
+    }
+
+    /*
+    Actions
+    */
 
     return content;
 }

@@ -107,3 +107,34 @@ groupBtns.forEach((btn) => {
         }
     });
 });
+
+// Create task button
+const newTodoBtn = document.querySelector("button.create-todo");
+const h1Input = document.querySelector(".h1-input");
+const pInput = document.querySelector(".p-input");
+newTodoBtn.addEventListener("click", (e) => {
+    let errors = false;
+    if (h1Input.value.length < 3) {
+        errors = true;
+        document.querySelector("#h1-error").classList.add("active");
+    } else {
+        document.querySelector("#h1-error").classList.remove("active");
+    }
+    if (pInput.value.length < 3) {
+        errors = true;
+        document.querySelector("#p-error").classList.add("active");
+    } else {
+        document.querySelector("#p-error").classList.remove("active");
+    }
+
+    if (errors) {
+        return;
+    }
+
+    let newTodo = new Todo(h1Input.value, pInput.value);
+    currentWorkspace.addTodo(newTodo);
+});
+
+/*
+Text input actions
+*/

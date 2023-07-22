@@ -72,5 +72,38 @@
                 >
             </footer>
         </main>
+
+        <div class="pop-up active">
+            <div class="add-todo-card">
+                <div class="card-content">
+                    <input
+                        class="h1-input"
+                        type="text"
+                        placeholder="Add title"
+                    />
+                    <div id="h1-error" class="text-error">
+                        Please enter a valid title!
+                    </div>
+                    <input
+                        style="margin-top: 12px"
+                        class="p-input"
+                        type="text"
+                        placeholder="Add description"
+                    />
+                    <div id="p-error" class="text-error">
+                        Please enter a valid title!
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <img
+                        draggable="false"
+                        class="tag-icon"
+                        src="../assets/icons/tag.svg"
+                        alt="tag-icon"
+                    />
+                    <button class="create-todo">Create Todo</button>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

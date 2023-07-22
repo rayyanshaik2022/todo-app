@@ -4,6 +4,7 @@ class Project extends Workspace {
     constructor(name, color) {
         super(name);
         this._color = color;
+        this._type = "project";
     }
 
     get color() {
@@ -23,8 +24,6 @@ function createProject(project) {
 
     const projectElement = document.createElement("div");
     projectElement.classList.add("project", "btn-group");
-
-    console.log(project)
 
     projectElement.innerHTML = `
         <div class="proj-color ${project.color}"></div>
