@@ -93,6 +93,19 @@ function createWorkspace(workspace) {
     Actions
     */
 
+    // Open popup for new task
+    const popup = document.querySelector(".pop-up");
+    const addTodoField = content.querySelector(".add-text-field");
+    addTodoField.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            if (addTodoField.value.length >= 3) {
+                popup.classList.add("active");
+                document.querySelector(".h1-input").value = addTodoField.value;
+            }
+        }
+    });
+
     return content;
 }
 

@@ -3,8 +3,6 @@ import Label from "./label";
 import { Workspace, createWorkspace } from "./workspace";
 import { Project, createProject } from "./project";
 
-
-
 // Default workspaces
 const todayWorkspace = new Workspace("Today");
 const weekWorkspace = new Workspace("Week");
@@ -52,12 +50,12 @@ todayWorkspace.addTodo(todo);
 
 let mainContent = document.querySelector(".content");
 
-function setContent(content) {
+function setContent(content, workspace) {
     let newContent = content;
     mainContent.replaceWith(newContent);
     mainContent = newContent;
 
-    currentWorkspace = content;
+    currentWorkspace = workspace;
 }
 
 function addProject(project) {
@@ -67,7 +65,7 @@ function addProject(project) {
 
 addProject(homeworkProject);
 addProject(personalProject);
-setContent(createWorkspace(todayWorkspace));
+setContent(createWorkspace(todayWorkspace), todayWorkspace);
 
 /*
 Button Clicking
@@ -82,20 +80,18 @@ groupBtns.forEach((btn) => {
 
             // Individual button logic
             if (btn.id == "group-today") {
-                setContent(createWorkspace(todayWorkspace));
+                setContent(createWorkspace(todayWorkspace), todayWorkspace);
             } else if (btn.id == "group-week") {
-                setContent(createWorkspace(weekWorkspace));
+                setContent(createWorkspace(weekWorkspace), weekWorkspace);
             } else if (btn.dataset.project != null) {
-
-                
                 let projectDiv;
-                workspaces.forEach((w) => {        
+                workspaces.forEach((w) => {
                     if (w.name == btn.dataset.project) {
                         projectDiv = w;
                     }
                 });
 
-                setContent(createWorkspace(projectDiv));
+                setContent(createWorkspace(projectDiv), projectDiv);
             }
 
             // Remove from other button
@@ -133,8 +129,26 @@ newTodoBtn.addEventListener("click", (e) => {
 
     let newTodo = new Todo(h1Input.value, pInput.value);
     currentWorkspace.addTodo(newTodo);
+
+    setContent(createWorkspace(currentWorkspace), currentWorkspace);
+
+    // Close popup
+
+    document.querySelector(".pop-up").classList.remove("active");
 });
 
 /*
 Text input actions
 */
+console.log("test");
+
+// Close popup
+const popup = document.querySelector(".pop-up");
+window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        event.preventDefault();
+        document.querySelector(".h1-input").value = "";
+        document.querySelector(".p-input").value = "";
+        popup.classList.remove("active");
+    }
+});
