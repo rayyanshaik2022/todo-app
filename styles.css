@@ -6,12 +6,27 @@
     --btn-active: #faf9f9;
 
     --text-non-select: #808080;
+    --text-secondary: #606060;
 
     --highlight-purple: #d6d5ff;
     --highlight-green: #c8ee9a;
 
     --project-purple: #adaceb;
     --project-green: #c3e59a;
+
+    --highlight-blue: #d6e9ff;
+    --highlight-green: #d6ffe0;
+    --highlight-purple: #efd6ff;
+    --highlight-red: #ffd6d6;
+    --highlight-yellow: #faffd6;
+    --highlight-orange: #fff1d6;
+
+    --highlight-blue-text: #67a9f4;
+    --highlight-green-text: #67f475;
+    --highlight-purple-text: #9167f4;
+    --highlight-red-text: #f46767;
+    --highlight-yellow-text: #f4ef67;
+    --highlight-orange-text: #f4bc67;
 }
 
 * {
@@ -32,7 +47,7 @@ body {
 
     height: calc(100vh - 48px);
     width: 240px;
-    
+
     position: sticky;
     z-index: 1;
     top: 0;
@@ -43,23 +58,22 @@ body {
 
     display: flex;
     flex-direction: column;
-    gap:20px;
+    gap: 28px;
 }
 
 .logo-container {
     display: flex;
-    height: 54px;
+    height: 32px;
 
     gap: 10px;
 }
-
 
 .logo-container > .text-pair {
     display: flex;
     flex-direction: column;
 
     height: 100%;
-    
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -67,15 +81,14 @@ body {
 }
 
 .logo-container > .text-pair > h2 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
 }
 
 .logo-container > .text-pair > h3 {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
 }
-
 
 /* New Task Button */
 .new-task-container {
@@ -85,7 +98,8 @@ body {
     background-color: white;
     border-radius: 6px;
     border: 1px solid white;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+        rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 
     display: flex;
     gap: 12px;
@@ -113,7 +127,6 @@ body {
 }
 @keyframes rotate180 {
     0% {
-
     }
     100% {
         rotate: 180deg;
@@ -150,7 +163,8 @@ body {
 }
 
 .group-btn > img {
-    filter: invert(55%) sepia(0%) saturate(1098%) hue-rotate(182deg) brightness(92%) contrast(92%);
+    filter: invert(55%) sepia(0%) saturate(1098%) hue-rotate(182deg)
+        brightness(92%) contrast(92%);
 }
 
 .group-btn.selected > img {
@@ -172,7 +186,6 @@ body {
 .group-icon {
     width: 24px;
 }
-
 
 /* Project Buttons*/
 
@@ -199,7 +212,7 @@ body {
 
     display: flex;
     align-items: center;
-    
+
     font-size: 16px;
     margin-left: 16px;
 
@@ -213,7 +226,6 @@ body {
     cursor: pointer;
 }
 
-
 .proj-color {
     height: 10px;
     width: 10px;
@@ -222,22 +234,218 @@ body {
     border-radius: 3px;
 }
 
-
-.proj-color.purple  {
+.proj-color.purple {
     background-color: var(--project-purple);
 }
 
 .proj-color.green {
     background-color: var(--project-green);
-    
 }
 
 .proj-title {
-    color: var(--text-non-select);
+    color: var(--text-secondary);
 }
 
 /* Main content */
 
 .content {
+    padding: 48px 64px;
 
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.content > h1 {
+    font-weight: 500;
+}
+
+.content > h2 {
+    color: var(--text-secondary);
+    font-weight: 400;
+    font-size: 16px;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+
+    padding-bottom: 8px;
+
+    font-size: 12px;
+}
+
+footer > a {
+    color: var(--highlight-blue-text);
+}
+
+/* Workspace Content */
+
+main {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Add Task Field */
+
+.regular-checkbox {
+    -webkit-appearance: none;
+    background-color: #ffffff;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+        inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 9px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+}
+
+.regular-checkbox:active,
+.regular-checkbox:checked:active {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+        inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.regular-checkbox:checked {
+    background-color: #fcfcfc;
+    border: 1px solid #adb8c0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+        inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
+        inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+    color: #99a1a7;
+}
+
+.regular-checkbox:checked:after {
+    content: "\2714";
+    font-size: 14px;
+    position: absolute;
+    top: 0px;
+    left: 3px;
+    color: #e79f1a;
+}
+
+.regular-checkbox:hover {
+    cursor: pointer;
+}
+
+.add-new-task {
+    width: calc(100%-20px);
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    gap: 22px;
+
+    padding-left: 20px;
+}
+
+.add-text-field {
+    background-color: #ffffff00;
+    border: none;
+
+    font-size: 14px;
+
+    width: 100%;
+}
+
+.add-text-field:focus {
+    background-color: #ffffff00;
+    border: none;
+    outline: none;
+
+    border-bottom: 2px solid var(--text-non-select);
+    padding-bottom: 4px;
+}
+
+.todo-card {
+    width: calc(100%-20px);
+    height: 80px;
+
+    background-color: var(--side-nav-color);
+    border-radius: 10px;
+
+    padding: 20px;
+
+    display: flex;
+    gap: 20px;
+    align-items: start;
+
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.card-content {
+    display: flex;
+    height: 100%;
+
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-content > h2 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.card-content > p {
+    color: var(--text-secondary);
+}
+
+.label-container {
+    display: flex;
+    gap: 8px;
+}
+
+/* Tags */
+
+.label {
+    height: 8px;
+    padding: 5px;
+    border-radius: 4px;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 12px;
+
+    user-select: none;
+
+    background-color: var(--highlight-red);
+    color: var(--highlight-red-text);
+}
+
+.label:hover {
+    cursor: pointer;
+}
+
+.label.red {
+    background-color: var(--highlight-red);
+    color: var(--highlight-red-text);
+}
+
+.label.blue {
+    background-color: var(--highlight-blue);
+    color: var(--highlight-blue-text);
+}
+
+.label.green {
+    background-color: var(--highlight-green);
+    color: var(--highlight-green-text);
+}
+
+.label.purple {
+    background-color: var(--highlight-purple);
+    color: var(--highlight-purple-text);
+}
+
+.label.yellow {
+    background-color: var(--highlight-yellow);
+    color: var(--highlight-yellow-text);
+}
+
+.label.orange {
+    background-color: var(--highlight-orange);
+    color: var(--highlight-orange-text);
 }
