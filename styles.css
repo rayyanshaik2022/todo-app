@@ -37,6 +37,7 @@
 
 body {
     display: flex;
+    position: relative;
 }
 .content {
     background-color: white;
@@ -181,7 +182,6 @@ body {
     transform: scale(1.05);
 }
 
-
 .group-icon {
     width: 24px;
 }
@@ -263,6 +263,7 @@ body {
 }
 
 .content > h1 {
+    align-self: first baseline;
     font-weight: 500;
 }
 
@@ -366,12 +367,32 @@ main {
     padding-bottom: 4px;
 }
 
+@keyframes shake {
+    0% {
+        margin-left: 0rem;
+    }
+    25% {
+        margin-left: 0.3rem;
+    }
+    75% {
+        margin-left: -0.3rem;
+    }
+    100% {
+        margin-left: 0rem;
+    }
+}
+
+input.add-text-field:invalid {
+    animation: shake 0.25s ease-in-out 0s 2;
+    border-bottom: 2px solid var(--highlight-red-text);
+}
+
 .todo-card {
     width: calc(100%-20px);
     height: 80px;
 
     background-color: var(--side-nav-color);
-    border-radius: 10px;
+    border-radius: 6px;
 
     padding: 20px;
 
@@ -379,7 +400,8 @@ main {
     gap: 20px;
     align-items: start;
 
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+        rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 .card-content {
@@ -454,4 +476,151 @@ main {
 .label.orange {
     background-color: var(--highlight-orange);
     color: var(--highlight-orange-text);
+}
+
+/* Popups */
+
+.pop-up.active {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+
+    background-color: red;
+}
+
+.pop-up {
+    display: none;
+}
+
+.pop-up.active {
+    position: absolute;
+
+    z-index: 2;
+
+    width: 100vw;
+    height: 100vh;
+
+    min-width: 100vw;
+    min-height: 100vh;
+
+    background-color: rgba(0, 0, 0, 0.43);
+    animation: opacityFadeIn 0.075s ease-in;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-todo-card {
+    width: calc(500px - 80px);
+    height: calc(260px - 80px);
+
+    background-color: white;
+    border-radius: 6px;
+
+    padding: 40px;
+    padding-bottom: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    gap: 0px;
+}
+
+.card-content > h1 {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.card-content > p {
+    font-size: 18;
+    font-weight: 400;
+}
+
+.h1-input {
+    background-color: #ffffff00;
+    border: none;
+
+    font-size: 26px;
+    font-weight: 500;
+
+    width: 100%;
+}
+
+.h1-input:focus {
+    background-color: #ffffff00;
+    border: none;
+    outline: none;
+}
+
+.p-input {
+    background-color: #ffffff00;
+    border: none;
+
+    font-size: 18px;
+    font-weight: 400;
+
+    width: 100%;
+}
+
+.p-input:focus {
+    background-color: #ffffff00;
+    border: none;
+    outline: none;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 12px;
+}
+
+button.create-todo {
+    background-color: white;
+    color: var(--text-non-select);
+
+    border: 1px solid var(--side-nav-selected);
+    border-radius: 4px;
+    padding: 6px 12px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+        rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+button.create-todo:hover {
+    cursor: pointer;
+}
+
+button.create-todo:active {
+    background-color: #f7f6f6;
+}
+
+.tag-icon:hover {
+    cursor: pointer;
+}
+
+.tag-icon {
+    width: 22px;
+    transform: scaleX(-1);
+    filter: invert(55%) sepia(0%) saturate(648%) hue-rotate(134deg)
+        brightness(92%) contrast(77%);
+}
+
+.text-error {
+    display: none;
+}
+
+.text-error.active {
+    display: block;
+    font-size: 12px;
+    color: var(--highlight-red-text);
 }
