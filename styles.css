@@ -528,7 +528,7 @@ input.add-text-field:invalid {
     justify-content: space-between;
 }
 
-.card-content {
+.add-todo-card > .card-content {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -536,12 +536,12 @@ input.add-text-field:invalid {
     gap: 0px;
 }
 
-.card-content > h1 {
+.add-todo-card > .card-content > h1 {
     font-size: 26px;
     font-weight: 500;
 }
 
-.card-content > p {
+.add-todo-card > .card-content > p {
     font-size: 18;
     font-weight: 400;
 }
