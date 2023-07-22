@@ -26,12 +26,12 @@ class Workspace {
 }
 
 function createWorkspace(workspace) {
-    const content = document.createElement("div");
+    const content = document.querySelector(".content");
 
     content.innerHTML = `
         <h1 class="todo-title">Today's Todos</h1>
         <h2 class="todo-desc">
-            You've got <span class="todo-count">5</span> todos to
+            You've got <span class="todo-count">${workspace.todos.length}</span> todos to
             complete
         </h2>
         <div class="add-new-task">
@@ -63,6 +63,7 @@ function createWorkspace(workspace) {
             let newTag = document.createElement("div");
             newTag.classList.add("label")
             newTag.classList.add(tag.color);
+            newTag.textContent = tag.text;
 
             currentLabelContainer.append(newTag);
             console.log("e")
