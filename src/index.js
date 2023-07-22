@@ -1,14 +1,29 @@
 import Todo from "./todo";
 import Label from "./label";
 import { Workspace, createWorkspace } from "./workspace";
+import { Project, createProject } from "./project";
 
-// Store workspaces
-let workspaces = [todayWorkspace, weekWorkspace];
+
 
 // Default workspaces
 const todayWorkspace = new Workspace("Today");
 const weekWorkspace = new Workspace("Week");
 weekWorkspace.title = "This Week's";
+
+// Default projects
+const homeworkProject = new Project("Homework", "purple");
+const personalProject = new Project("Personal", "green");
+
+// Store workspaces
+let workspaces = [
+    todayWorkspace,
+    weekWorkspace,
+    homeworkProject,
+    personalProject,
+];
+
+// Current vars
+let currentWorkspace;
 
 // Default todos
 let tags = [
@@ -39,13 +54,20 @@ let mainContent = document.querySelector(".content");
 
 function setContent(content) {
     let newContent = content;
-    mainContent.replaceWith(newContent)
+    mainContent.replaceWith(newContent);
     mainContent = newContent;
+
+    currentWorkspace = content;
 }
 
+function addProject(project) {
+    const projContainer = document.querySelector(".project-container");
+    projContainer.append(createProject(project));
+}
+
+addProject(homeworkProject);
+addProject(personalProject);
 setContent(createWorkspace(todayWorkspace));
-
-
 
 /*
 Button Clicking
@@ -61,8 +83,19 @@ groupBtns.forEach((btn) => {
             // Individual button logic
             if (btn.id == "group-today") {
                 setContent(createWorkspace(todayWorkspace));
-            }else if (btn.id == "group-week") {
+            } else if (btn.id == "group-week") {
                 setContent(createWorkspace(weekWorkspace));
+            } else if (btn.dataset.project != null) {
+
+                
+                let projectDiv;
+                workspaces.forEach((w) => {        
+                    if (w.name == btn.dataset.project) {
+                        projectDiv = w;
+                    }
+                });
+
+                setContent(createWorkspace(projectDiv));
             }
 
             // Remove from other button
@@ -70,8 +103,7 @@ groupBtns.forEach((btn) => {
                 if (!(btn === btn2)) {
                     btn2.classList.remove("selected");
                 }
-            })
-         
+            });
         }
-    })
-})
+    });
+});

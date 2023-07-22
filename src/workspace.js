@@ -23,20 +23,9 @@ class Workspace {
     set title(newTitle) {
         this._title = newTitle;
     }
-}
 
-class Project extends Workspace {
-    constructor(name, color) {
-        super(name);
-        this._color = color;
-    }
-
-    get color() {
-        return this._color;
-    }
-
-    set color(newColor) {
-        this._color = newColor;
+    get name() {
+        return this._name;
     }
 }
 
