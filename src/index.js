@@ -1,20 +1,28 @@
-console.log("test")
+import Todo from "./todo";
+import Label from "./label";
+import { Workspace, createWorkspace } from "./workspace";
 
-class Project {
-    constructor(name) {
-        this.name = name;
-        this.todos = [];
-    }
+// Default workspaces
+const todayWorkspace = new Workspace("Today");
+const weekWorkspace = new Workspace("Week");
+weekWorkspace.title = "This Week's";
 
-    get todos() {
-        return this.todos
-    }
+// Default todos
+const tags = [
+    new Label("js", "red"),
+    new Label("project", "todo"),
+    new Label("todo"),
+];
+const todo1 = new Todo(
+    "Practice using JS module",
+    "Create a todo-list application to achieve this"
+);
+todo1.tags = tags;
+todayWorkspace.addTodo(todo1);
 
-    addTodo(todo) {
-        this.todos.push(todo);
-    }
-}
-
-
-let projects = [];
+let workspaces = [todayWorkspace, weekWorkspace];
 let todos = [];
+
+const mainContent = document.querySelector(".content");
+
+mainContent.innerHTML += createWorkspace(todayWorkspace).innerHTML;
