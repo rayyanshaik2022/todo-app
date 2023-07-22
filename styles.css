@@ -294,6 +294,8 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    overflow-x: hidden;
 }
 
 /* Add Task Field */
@@ -404,6 +406,20 @@ input.add-text-field:invalid {
         rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
+.dissolve {
+    animation: dissolveAnim 1s ease-in;
+}
+
+@keyframes dissolveAnim {
+    0% {
+
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100vw);
+    }
+}
+
 .card-content {
     display: flex;
     height: 100%;
@@ -424,6 +440,10 @@ input.add-text-field:invalid {
 .label-container {
     display: flex;
     gap: 8px;
+}
+
+.add-todo-card > .card-content > .label-container {
+    padding-bottom: 20px;
 }
 
 /* Tags */
@@ -613,6 +633,44 @@ button.create-todo:active {
     transform: scaleX(-1);
     filter: invert(55%) sepia(0%) saturate(648%) hue-rotate(134deg)
         brightness(92%) contrast(77%);
+}
+
+
+input.add-tag {
+    display: none;
+}
+
+input.add-tag.active {
+    background-color: #ffffff00;
+    border: none;
+    display: inline;
+
+    font-size: 12px;
+    font-weight: 400;
+
+    width: 6rem;
+    height: 1.2rem;
+
+    padding-left: 4px;
+    border: 1px solid var(--side-nav-selected);
+    border-radius: 3px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+    animation: growIn 0.25s ease-in-out;
+}
+
+@keyframes growIn {
+    0% {
+        width: 0rem;
+    }
+    100% {
+        width: 6rem;
+    }
+}
+
+input.add-tag:focus {
+    outline: none;
+    
 }
 
 .text-error {
