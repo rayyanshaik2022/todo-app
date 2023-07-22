@@ -1,5 +1,6 @@
 import Label from "./label";
 import Todo from "./todo";
+import { setContent } from ".";
 
 class Workspace {
     constructor(name) {
@@ -15,6 +16,14 @@ class Workspace {
 
     addTodo(todo) {
         this._todos.push(todo);
+    }
+
+    removeTodo(title) {
+        for (let i = 0; i < this._todos.length; i++) {
+            if (this._todos[i].title == title) {
+                return this._todos.pop(i);
+            }
+        }
     }
 
     get title() {
@@ -34,7 +43,7 @@ class Workspace {
     }
 }
 
-function createWorkspace(workspace) {
+function createWorkspace(workspace, main) {
     const content = document.createElement("div");
     content.classList.add("content");
 
@@ -54,7 +63,7 @@ function createWorkspace(workspace) {
     workspace.todos.forEach(tod => {
         content.innerHTML += `
             <div class="todo-card">
-                <input class="regular-checkbox" type="checkbox" name="add-task" value="del">
+                <input class="regular-checkbox for-del" type="checkbox" name="add-task" value="del">
                 <div class="card-content">
                     <h2>${tod.title}</h2>
                     <p>${tod.text}</p>
@@ -102,9 +111,33 @@ function createWorkspace(workspace) {
             if (addTodoField.value.length >= 3) {
                 popup.classList.add("active");
                 document.querySelector(".h1-input").value = addTodoField.value;
+                document.querySelector(".p-input").value = "";
             }
         }
     });
+
+    // Delete Todo
+    const checkboxes = content.querySelectorAll(".for-del");
+    checkboxes.forEach((ckbx) => {
+        ckbx.addEventListener("change", (e) => {
+            if (e.currentTarget.checked) {
+                let checkCard = ckbx.closest(".todo-card");
+
+                let curr = e.currentTarget;
+
+                setTimeout(() => {
+                    if (curr.checked) {
+                        checkCard.classList.add("dissolve");
+                        setTimeout(() => {
+                            workspace.removeTodo(checkCard.querySelector("h2").textContent);
+                            setContent(createWorkspace(workspace), workspace);
+                        }, 1000);
+                    }
+                }, 1000);
+            }
+        })
+    })
+
 
     return content;
 }

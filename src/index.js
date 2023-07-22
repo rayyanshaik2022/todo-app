@@ -137,6 +137,12 @@ newTodoBtn.addEventListener("click", (e) => {
     document.querySelector(".pop-up").classList.remove("active");
 });
 
+// Open label text field button
+const addLabel = document.querySelector(".tag-icon");
+addLabel.addEventListener("click", (e) => {
+    document.querySelector(".add-tag").classList.toggle("active");
+})
+
 /*
 Text input actions
 */
@@ -152,3 +158,5 @@ window.addEventListener("keydown", (event) => {
         popup.classList.remove("active");
     }
 });
+
+export {setContent};
