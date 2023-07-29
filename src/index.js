@@ -141,7 +141,7 @@ newTodoBtn.addEventListener("click", (e) => {
 const addLabel = document.querySelector(".tag-icon");
 addLabel.addEventListener("click", (e) => {
     document.querySelector(".add-tag").classList.toggle("active");
-})
+});
 
 /*
 Text input actions
@@ -159,4 +159,20 @@ window.addEventListener("keydown", (event) => {
     }
 });
 
-export {setContent};
+const closeEditBtn = document.querySelector(".edit-circle");
+closeEditBtn.addEventListener("click", (event) => {
+    document.querySelector(".h1-input").value = "";
+    document.querySelector(".p-input").value = "";
+    popup.classList.remove("active");
+});
+
+export { setContent };
+
+// Create tags
+const tagInput = document.querySelector(".add-tag");
+tagInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        if (tagInput.value.length > 1) {
+        }
+    }
+});
