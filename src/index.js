@@ -22,12 +22,13 @@ let workspaces = [
 
 // Current vars
 let currentWorkspace;
+let currentTags = [];
 
 // Default todos
 let tags = [
-    new Label("js", "red"),
-    new Label("project", "purple"),
-    new Label("todo", "orange"),
+    new Label("js"),
+    new Label("project"),
+    new Label("todo"),
 ];
 let todo = new Todo(
     "Practice using JS module",
@@ -37,9 +38,9 @@ todo.tags = tags;
 todayWorkspace.addTodo(todo);
 
 tags = [
-    new Label("css", "green"),
-    new Label("html", "yellow"),
-    new Label("study", "blue"),
+    new Label("css"),
+    new Label("html5"),
+    new Label("work"),
 ];
 todo = new Todo(
     "Practice CSS Flexbox",
@@ -128,6 +129,7 @@ newTodoBtn.addEventListener("click", (e) => {
     }
 
     let newTodo = new Todo(h1Input.value, pInput.value);
+    newTodo.tags = currentTags;
     currentWorkspace.addTodo(newTodo);
 
     setContent(createWorkspace(currentWorkspace), currentWorkspace);
@@ -156,6 +158,9 @@ window.addEventListener("keydown", (event) => {
         document.querySelector(".h1-input").value = "";
         document.querySelector(".p-input").value = "";
         popup.classList.remove("active");
+        currentTags = [];
+        
+        document.querySelector(".edit-label-container").replaceChildren();
     }
 });
 
@@ -164,15 +169,33 @@ closeEditBtn.addEventListener("click", (event) => {
     document.querySelector(".h1-input").value = "";
     document.querySelector(".p-input").value = "";
     popup.classList.remove("active");
+    currentTags = [];
+
+    document.querySelector(".edit-label-container").replaceChildren();
 });
 
 export { setContent };
 
 // Create tags
 const tagInput = document.querySelector(".add-tag");
+const labelContainer = document.querySelector(".edit-label-container");
 tagInput.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
-        if (tagInput.value.length > 1) {
+        if (tagInput.value.length >= 1) {
+
+            let nextLabelObj = new Label(tagInput.value);
+            currentTags.push(
+                nextLabelObj
+            );
+
+            let nextLabel = document.createElement("div");
+            nextLabel.classList.add("label")
+            nextLabel.classList.add(nextLabelObj.color);
+            nextLabel.textContent = tagInput.value;
+
+            
+            labelContainer.append(nextLabel);
+            tagInput.value = "";
         }
     }
 });
